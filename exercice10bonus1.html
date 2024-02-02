@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        // Fonction pour générer un nombre aléatoire entre min et max inclus
+function genererNombreAleatoire(min, max) {
+return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Fonction principale du jeu
+function justePrix() {
+const difficulte = prompt("Choisissez votre niveau de difficulté :\n1. Facile\n2. Normal\n3. Difficile");
+let nombreTentatives;
+
+switch (difficulte) {
+    case '1':
+        nombreTentatives = 20;
+        break;
+    case '2':
+        nombreTentatives = 10;
+        break;
+    case '3':
+        nombreTentatives = 7;
+        break;
+    default:
+        console.log("Difficulté non reconnue. Choisissez entre 1, 2 ou 3.");
+        return; // Fin du jeu
+}
+
+const nombreSecret = genererNombreAleatoire(1, 1000);
+let tentative = 1;
+
+alert("Bienvenue dans le jeu du Juste Prix !");
+alert("Devinez le nombre secret compris entre 1 et 1000.");
+alert("Vous avez " + nombreTentatives + " tentatives.");
+
+// Boucle de tentatives
+while (tentative <= nombreTentatives) {
+    const proposition = parseInt(prompt("Tentative " + tentative + " : Entrez votre proposition :"));
+
+    if (!isNaN(proposition)) {
+        if (proposition === nombreSecret) {
+            alert("Félicitations ! Vous avez trouvé le nombre secret :"+ nombreSecret);
+            return; // Fin du jeu
+        } else if (proposition < nombreSecret) {
+            alert("C'est +");
+        } else {
+            alert("C'est -");
+        }
+    } else {
+        alert("Veuillez entrer un nombre valide.");
+    }
+
+    tentative++;
+}
+
+// Si l'utilisateur n'a pas trouvé le nombre après toutes ses tentatives
+alert("Désolé, vous avez épuisé toutes vos tentatives.");
+alert("Le nombre secret était :" + nombreSecret);
+}
+
+// Appel de la fonction principale pour démarrer le jeu
+justePrix();
+
+
+</script>
+
+</body>
+</html>

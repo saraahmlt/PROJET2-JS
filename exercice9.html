@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<script>
+  
+  function saisirNombre(message) {
+    return parseFloat(prompt(message));
+}
+
+// Fonction pour additionner deux nombres
+function addition(nb1, nb2) {
+    return nb1 + nb2;
+}
+
+// Fonction pour soustraire deux nombres
+function soustraction(nb1, nb2) {
+    return nb1 - nb2;
+}
+
+// Fonction pour multiplier deux nombres
+function multiplication(nb1, nb2) {
+    return nb1 * nb2;
+}
+
+// Fonction pour diviser deux nombres
+function division(nb1, nb2) {
+    if (nb2 !== 0) {
+        return nb1 / nb2;
+    } else {
+        return "Division par zéro impossible";
+    }
+}
+
+// Demander à l'utilisateur de saisir deux nombres
+const nb1 = saisirNombre("Entrez le premier nombre :");
+const nb2 = saisirNombre("Entrez le deuxième nombre :");
+
+// Afficher le menu des opérations
+const operation = prompt("Choisissez une opération :\n1. Addition\n2. Soustraction\n3. Multiplication\n4. Division");
+
+// Effectuer l'opération choisie
+let resultat;
+switch (operation) {
+    case '1':
+        resultat = addition(nb1, nb2);
+        break;
+    case '2':
+        resultat = soustraction(nb1, nb2);
+        break;
+    case '3':
+        resultat = multiplication(nb1, nb2);
+        break;
+    case '4':
+        resultat = division(nb1, nb2);
+        break;
+    default:
+        resultat = "Opération non reconnue";
+}
+
+// Afficher le résultat
+console.log("Le résultat de l'opération est :", resultat);
+
+
+</script>
+
+</body>
+</html>

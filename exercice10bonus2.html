@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        // Fonction pour générer un nombre aléatoire entre min et max inclus
+function genererNombreAleatoire(min, max) {
+return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Fonction principale du jeu avec limite de temps
+function justePrixAvecLimiteTemps(dureeLimite) {
+const nombreSecret = genererNombreAleatoire(1, 1000);
+let tentative = 1;
+
+alert("Bienvenue dans le jeu du Juste Prix avec limite de temps !");
+alert("Devinez le nombre secret compris entre 1 et 1000.");
+
+// Définir la limite de temps
+const limiteTemps = dureeLimite * 1000; // Convertir les secondes en millisecondes
+const tempsDebut = Date.now();
+
+// Boucle de tentatives
+while (true) {
+const proposition = parseInt(prompt("Tentative " + tentative + " : Entrez votre proposition :"));
+
+if (!isNaN(proposition)) {
+    if (proposition === nombreSecret) {
+        alert("Félicitations ! Vous avez trouvé le nombre secret :" + nombreSecret);
+        return; // Fin du jeu
+    } else if (proposition < nombreSecret) {
+        alert("C'est +");
+    } else {
+        alert("C'est -");
+    }
+} else {
+    alert("Veuillez entrer un nombre valide.");
+}
+
+// Vérifier si le temps est écoulé
+if (Date.now() - tempsDebut > limiteTemps) {
+    alert("Désolé, le temps est écoulé !");
+    alert("Le nombre secret était :" + nombreSecret);
+    return; // Fin du jeu
+}
+
+tentative++;
+}
+}
+
+// Fonction pour démarrer le jeu avec la difficulté choisie
+function demarrerJeu(difficulte) {
+switch (difficulte) {
+case '1':
+    justePrixAvecLimiteTemps(30); // Facile: 30 secondes
+    break;
+case '2':
+    justePrixAvecLimiteTemps(60); // Normal: 1 minute
+    break;
+case '3':
+    justePrixAvecLimiteTemps(120); // Difficile: 2 minutes
+    break;
+default:
+    console.log("Difficulté non reconnue. Choisissez entre 1, 2 ou 3.");
+    return; // Fin du jeu
+}
+}
+
+// Appel de la fonction principale pour démarrer le jeu avec la difficulté choisie par l'utilisateur
+const difficulte = prompt("Choisissez votre niveau de difficulté :\n1. Facile\n2. Normal\n3. Difficile");
+demarrerJeu(difficulte);
+
+
+</script>
+
+</body>
+</html>
